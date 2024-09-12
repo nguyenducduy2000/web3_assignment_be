@@ -33,4 +33,4 @@ RUN npm install --production
 
 
 # Command to run the application
-CMD ["sh", "-c", "node ace migration:run && node bin/server.js"]
+CMD ["sh", "-c", "node ace migration:fresh --force && node bin/server.js"]

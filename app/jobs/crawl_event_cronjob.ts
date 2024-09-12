@@ -1,9 +1,9 @@
 import Schedule from 'node-schedule'
 import { ethers } from 'ethers'
-import Transaction from '../app/models/transaction.js'
-import LastCrawledBlock from '../app/models/last_crawled_block.js'
-import contractAddress from '../contracts/contract-address.json' assert { type: 'json' }
-import StakingArtifact from '../contracts/Staking.json' assert { type: 'json' }
+import Transaction from '../../app/models/transaction.js'
+import LastCrawledBlock from '../../app/models/last_crawled_block.js'
+import contractAddress from '../../contracts/contract-address.json' assert { type: 'json' }
+import StakingArtifact from '../../contracts/Staking.json' assert { type: 'json' }
 import dotenv from 'dotenv'
 // import config from '../config.js'
 
@@ -15,7 +15,7 @@ export default async function eventCrawler() {
     const provider = new ethers.providers.JsonRpcProvider(process.env.BSC_URL)
     const stakingContract = new ethers.Contract(Staking, StakingArtifact.abi, provider)
     const chunkPerConjob = Number.parseInt(process.env.CHUNK_PER_CONJOB)
-    const BLOCK_NUMBER = Number.parseInt(process.env.BLOCK_NUMBER)
+    const BLOCK_NUMBER = Number.parseInt(process.env.BLOCK_NUMBER) + 1
     // Function to get the last crawled block
     async function getLastCrawledBlock() {
         const lastCrawled = await LastCrawledBlock.query().orderBy('id', 'desc').first()

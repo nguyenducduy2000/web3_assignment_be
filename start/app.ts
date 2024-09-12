@@ -1,6 +1,7 @@
-import eventCrawler from '../jobs/crawl_event_cronjob.js'
-const isAceCommand = process.argv.some((arg) => arg.includes('ace'))
-if (!isAceCommand) {
+import eventCrawler from '../app/jobs/crawl_event_cronjob.js'
+const isBuildCommand = process.argv.some((arg) => arg.includes('server'))
+console.log(isBuildCommand)
+if (isBuildCommand) {
     console.log('Backend is running...')
     eventCrawler()
 }
