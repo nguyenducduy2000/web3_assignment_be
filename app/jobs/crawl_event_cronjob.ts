@@ -15,7 +15,7 @@ export default async function eventCrawler() {
     const provider = new ethers.providers.JsonRpcProvider(process.env.BSC_URL)
     const stakingContract = new ethers.Contract(Staking, StakingArtifact.abi, provider)
     const chunkPerConjob = Number.parseInt(process.env.CHUNK_PER_CONJOB)
-    const BLOCK_NUMBER = Number.parseInt(process.env.BLOCK_NUMBER) + 1
+    const BLOCK_NUMBER = Number.parseInt(process.env.BLOCK_NUMBER)
     // Function to get the last crawled block
     async function getLastCrawledBlock() {
         const lastCrawled = await LastCrawledBlock.query().orderBy('id', 'desc').first()
