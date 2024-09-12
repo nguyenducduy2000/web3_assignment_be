@@ -31,7 +31,6 @@ WORKDIR /app/build
 
 RUN npm install --production
 
-EXPOSE 3333
 
 # Command to run the application
-CMD ["sh", "-c", "node ace migration:run"]
+CMD ["sh", "-c", "node ace migration:run && node bin/server.js"]
